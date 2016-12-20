@@ -1,2 +1,4 @@
-Dec 20, 2016 3:12:40 PM com.example.AnalyticsImpl addEvent
-INFO: Duration for method to run PT0.271S
+Dec 20, 2016 4:06:10 PM com.example.AnalyticsImpl addEvent
+INFO: Duration for method to run PT1.914S
+Dec 20, 2016 4:06:12 PM com.example.AnalyticsImpl addEvent
+INFO: Duration for method to run PT1.518S

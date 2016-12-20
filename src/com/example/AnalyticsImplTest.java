@@ -19,7 +19,7 @@ public class AnalyticsImplTest {
     Random random = new Random();
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         System.out.println("before");
     }
 
@@ -31,34 +31,34 @@ public class AnalyticsImplTest {
     @Test
     public void testAddEvent() {
         try {
-            analytics.addEvent(null);
+            analytics.addEvent((Event)null);
             fail("addEvent that is null should have thrown IllegalArgumentException");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
 
         }
         try {
             Event event = new Event();
             analytics.addEvent(event);
             fail("addEvent that has an empty even should have thrown IllegalAgumentExcpetion");
-        } catch (IllegalArgumentException e ){
+        } catch (IllegalArgumentException e) {
 
         }
         try {
             Event event = new Event();
             event.setName("Good Name");
-            event.setAction("Good Action");
+            event.setAction("PhoneCall");
             analytics.addEvent(event);
             fail("addEvent that has one empty parameter should have thrown IllegalAgumentExcpetion");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
 
         }
         try {
             Event event = new Event();
-            event.setAction("Good Action");
+            event.setAction("TextMessaging");
             event.setAl(LocalDate.now());
             analytics.addEvent(event);
             fail("addEvent that has one empty parameter should have thrown IllegalAgumentExcpetion");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
 
         }
         try {
@@ -67,16 +67,73 @@ public class AnalyticsImplTest {
             event.setAl(LocalDate.now());
             analytics.addEvent(event);
             fail("addEvent that has one empty parameter should have thrown IllegalAgumentExcpetion");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
+
+        }
+        try {
+            Event event = new Event();
+            event.setName("Good Name");
+            event.setAction("Bad Action");
+            event.setAl(LocalDate.now());
+            analytics.addEvent(event);
+            fail("Name can only be 1 of 4 should have thrown IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
 
         }
 
         Event event = new Event();
         event.setName("Good Name");
-        event.setAction("Good Action");
+        event.setAction("Face2Face");
         event.setAl(LocalDate.now());
         analytics.addEvent(event);
+
+
     }
 
+    @Test
+    public void testAddEvent2() {
+        try {
+            analytics.addEvent((Event2)null);
+            fail("addEvent that is null should have thrown IllegalArgumentException");
+        } catch (IllegalArgumentException e){
 
+        }
+
+        try {
+            Event2 event2 = new Event2();
+            event2.setName("Good Name");
+            event2.setAction(Action.TextMessaging);
+            analytics.addEvent(event2);
+            fail("No parameter can be null");
+        } catch (IllegalArgumentException e){
+
+        }
+
+        try {
+            Event2 event2 = new Event2();
+            event2.setName("Good Name");
+            event2.setAl(LocalDate.now());
+            analytics.addEvent(event2);
+            fail("No parameter can be null");
+        } catch (IllegalArgumentException e){
+
+        }
+
+        try {
+            Event2 event2 = new Event2();
+            event2.setAction(Action.TextMessaging);
+            event2.setAl(LocalDate.now());
+            analytics.addEvent(event2);
+            fail("No parameter can be null");
+        } catch (IllegalArgumentException e){
+
+        }
+
+
+        Event2 event2 = new Event2();
+        event2.setName("Good Name");
+        event2.setAction(Action.Unknown);
+        event2.setAl(LocalDate.now());
+        analytics.addEvent(event2);
+    }
 }
